@@ -16,4 +16,3 @@ services:
     env: static
     plan: free
     buildCommand: npm install --prefix frontend && npm run build --prefix frontend
-    publish: frontend/build
