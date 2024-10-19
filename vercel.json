@@ -5,7 +5,7 @@
         "src": "frontend/package.json",
         "use": "@vercel/static-build",
         "config": {
-          "distDir": "frontend/src"  
+          "distDir": "frontend/build"
         }
       },
       {
@@ -22,6 +22,9 @@
         "src": "/(.*)",
         "dest": "frontend/build/$1"
       }
-    ]
+    ],
+    "env": {
+      "MONGO_URI": "mongodb+srv://VCC:1234@cluster.3ivou.mongodb.net/?retryWrites=true&w=majority"
+    }
   }
   
