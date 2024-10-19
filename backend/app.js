@@ -1,38 +1,38 @@
-const express = require("express");
+const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
 const app = express();
-const mongoose = require("mongoose");
-const path = require("path");
-const cors = require("cors");
-require("dotenv").config();
-const authRoutes = require("./routes/authRoutes");
-const taskRoutes = require("./routes/taskRoutes");
-const profileRoutes = require("./routes/profileRoutes");
 
+// Middleware to parse JSON requests
 app.use(express.json());
-app.use(cors());
 
-const mongoUrl =
-  "mongodb+srv://VCC:1234@cluster.3ivou.mongodb.net/myDatabase?retryWrites=true&w=majority&ssl=true";
-mongoose.connect(mongoUrl, (err) => {
-  if (err) throw err;
-  console.log("MongoDB connected...");
+// Connect to MongoDB
+mongoose.connect('mongodb+srv://VCC:1234@cluster.3ivou.mongodb.net/?retryWrites=true&w=majority&appName=Cluster', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => {
+    console.log('Connected to MongoDB');
+})
+.catch((err) => {
+    console.error('MongoDB connection error:', err);
 });
 
-// API routes
-app.use("/api/auth", authRoutes);
-app.use("/api/tasks", taskRoutes);
-app.use("/api/profile", profileRoutes);
+// Serve static files from the frontend/public directory
+app.use(express.static(path.join(__dirname, '../frontend/public')));
 
-// Serve static files from the React app in production
-if (process.env.NODE_ENV === "production") {
-  const buildPath = path.resolve(__dirname, "../frontend/build");
-  app.use(express.static(buildPath)); // Ensure correct path
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(buildPath, "index.html")); // Ensure correct path
-  });
-}
+// Example route
+app.get('/api/example', (req, res) => {
+    res.json({ message: 'Hello from the backend!' });
+});
 
-const port = process.env.PORT || 5000;
-app.listen(port, () => {
-  console.log(`Backend is running on port ${port}`);
+// Serve index.html for the root route
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/public/index.html'));
+});
+
+// Start the server
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => {
+    console.log(`Backend is running on port ${PORT}`);
 });
