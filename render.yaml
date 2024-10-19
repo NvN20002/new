@@ -5,7 +5,7 @@ services:
     plan: free
     buildCommand: npm install --prefix frontend && npm run build --prefix frontend
     startCommand: npm start --prefix backend
-    publish: frontend/publc
+    publish: frontend/public
     envVars:
       - key: MONGO_URI
         value: mongodb+srv://VCC:1234@cluster.3ivou.mongodb.net/?retryWrites=true&w=majority&appName=Cluster
