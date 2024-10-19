@@ -12,9 +12,9 @@ app.use(express.json());
 app.use(cors());
 
 const mongoUrl =
-  "mongodb+srv://VCC:1234@cluster.3ivou.mongodb.net/myDatabase?retryWrites=true&w=majority&ssl=true
-";
-mongoose.connect(mongoUrl, (err) => {
+  "mongodb+srv://VCC:1234@cluster.3ivou.mongodb.net/myDatabase?retryWrites=true&w=majority&ssl=true";  // No newline here
+
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
   if (err) throw err;
   console.log("MongoDB connected...");
 });
@@ -26,9 +26,9 @@ app.use("/api/profile", profileRoutes);
 
 // Serve static files from the React app in production
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/build"))); // Ensure correct path
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/build", "index.html")); // Ensure correct path
+    res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
   });
 }
 
