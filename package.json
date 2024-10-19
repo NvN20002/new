@@ -4,6 +4,7 @@
   "description": "A MERN application for basic tasks management",
   "main": "index.js",
   "scripts": {
+    
     "dev-server": "npm run dev --prefix backend",
     "dev-client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
