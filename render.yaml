@@ -1,13 +1,19 @@
 services:
   - type: web
-    name: mern-task-manager
+    name: mern-task-manager-backend
     env: node
     plan: free
-    buildCommand: npm install --prefix frontend && npm run build --prefix frontend
+    buildCommand: npm install --prefix backend
     startCommand: npm start --prefix backend
-    publish: frontend/public
     envVars:
       - key: MONGO_URI
         value: mongodb+srv://VCC:1234@cluster.3ivou.mongodb.net/?retryWrites=true&w=majority&appName=Cluster
       - key: NODE_ENV
         value: production
+
+  - type: static
+    name: mern-task-manager-frontend
+    env: static
+    plan: free
+    buildCommand: npm install --prefix frontend && npm run build --prefix frontend
+    publish: frontend/build
