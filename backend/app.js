@@ -12,7 +12,8 @@ app.use(express.json());
 app.use(cors());
 
 const mongoUrl =
-  "mongodb+srv://VCC:1234@cluster.3ivou.mongodb.net/?retryWrites=true&w=majority&appName=Cluster";
+  "mongodb+srv://VCC:1234@cluster.3ivou.mongodb.net/myDatabase?retryWrites=true&w=majority&ssl=true
+";
 mongoose.connect(mongoUrl, (err) => {
   if (err) throw err;
   console.log("MongoDB connected...");
