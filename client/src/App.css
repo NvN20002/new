@@ -1,0 +1,238 @@
+@import url("https://fonts.googleapis.com/css2?family=McLaren&family=Montserrat&display=swap");
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  background-color: rgb(35, 48, 63);
+  background-image: url("https://www.transparenttextures.com/patterns/maze-white.png");
+}
+
+/* notes style */
+.notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  align-items: start;
+  gap: 1em;
+  padding: 15px;
+}
+
+.notes > div {
+  position: relative;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 7px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
+  overflow: hidden;
+}
+
+.note {
+  height: 100%;
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.note h1 {
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-bottom: 6px;
+  word-wrap: break-word;
+}
+
+.note p {
+  font-size: 1.1em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-bottom: 20px;
+}
+
+.notes button {
+  margin: auto 10px 0 auto;
+  color: rgb(151, 64, 99);
+  border: none;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+}
+
+.notes button:hover,
+.notes button:active {
+  background-color: rgba(254, 150, 118, 0.546);
+  color: rgb(255, 255, 255);
+}
+
+/* CreateArea style */
+form.create-note {
+  position: relative;
+  margin: 30px 15px;
+  background: #ffffff5f;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(114, 113, 113);
+}
+
+form.create-note textarea {
+  width: 100%;
+  height: auto;
+
+  font-size: 1.2em;
+  font-family: inherit;
+  background-color: transparent;
+  color: #fff;
+
+  overflow: hidden;
+  box-sizing: content-box;
+  padding: 4px;
+}
+
+textarea {
+  resize: none;
+  border: none;
+  outline: none;
+}
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.761);
+  opacity: 1;
+}
+
+form.create-note button {
+  position: absolute;
+  right: 18px;
+  bottom: -18px;
+  background: rgb(151, 64, 99);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  outline: none;
+}
+
+form.create-note button:hover,
+.animation-container .close:hover,
+.btn-container button:hover {
+  background-color: rgb(254, 149, 118);
+  color: rgb(255, 255, 255);
+}
+
+/* animation-containerPresence style */
+.overlay {
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  backdrop-filter: blur(1px);
+  background-color: #1b191953;
+}
+
+.animation-container {
+  width: 90%;
+  height: 85%;
+  padding: 20px 30px;
+  margin: 0 auto;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+
+  box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
+  border-radius: 7px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.animation-container .close {
+  width: 40px;
+  height: 36px;
+  position: absolute;
+  top: -18px;
+  right: 18px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(151, 64, 99);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
+  border: none;
+  font-weight: 600;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+}
+
+.animation-container h1 {
+  font-size: 1.4em;
+  font-weight: 700;
+}
+
+.animation-container textarea {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  box-sizing: content-box;
+  font-size: 20px;
+  padding-top: 10px;
+  background-color: inherit;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.btn-container button {
+  background-color: rgb(151, 64, 99);
+  color: white;
+  margin: 0 5px;
+  height: 2.5em;
+  width: 4.5em;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 768px) {
+  form.create-note {
+    width: 480px;
+    margin: 30px auto;
+  }
+
+  .notes {
+    padding: 15px 32px;
+  }
+
+  .animation-container {
+    width: 50% !important;
+    height: 70% !important;
+    padding: 20px 40px;
+  }
+
+  .animation-container h1 {
+    font-size: 2em;
+  }
+
+  .animation-container textarea {
+    padding-right: 15px;
+    padding-left: 10px;
+  }
+}
